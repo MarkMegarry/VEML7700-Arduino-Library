@@ -244,7 +244,6 @@ bool VEML7700::incrementGain(){
   if(VEML7700_gain <= 3){
     VEML7700_gain++;
     //Get bits corresponding to new gain
-    uint8_t gainBits;
     getGainBits(VEML7700_gain, ALS_GAIN);
     updateConfigRegister();
   }

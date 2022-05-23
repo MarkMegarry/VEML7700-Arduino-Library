@@ -1,6 +1,7 @@
 #ifndef VEML7700_H
 #define VEML7700_H
 #include <Arduino.h>
+#include <Wire.h>
 
 //Define important VEML7700 registers and addresses
 #define VEML7700_ADDRESS 0x10
