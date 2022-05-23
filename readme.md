@@ -1,10 +1,21 @@
-## Using the library
+## Motivation
+This is a simple Arduino library written to allow Lux values to be read from the Vishay VEML7700 Ambient Light Sensor with appropriate gain and integration time values being algorithmically selected. These values are selected according to an interpretation of the "Typical Software Flow Chart With Correction Formula" found on page 22 of the "Designing the VEML7700 Into an Application" application note (availabe at https://www.vishay.com/docs/84323/designingveml7700.pdf [accessed 23-05-22])
+If you are able to, I would appreciate if you could compare the lux value output by this library with the lux value output by a lux meter.
+
+## Important
+This library has not been heavily tested! As such, it may return inaccurate values, may contain bugs such as infinite loops.
+I have no affiliation with Vishay or the VEML7700 Ambient Light Sensor.
+
+## Adding the Library to Your Sketch
+In the Arduino editor, simply select "Sketch" -> "Include Library" -> "Add .ZIP Library" and select the .zip file included with this repo to allow Arduino to access the library.
+
+## Using the Library
 Before using any of the functions included with this library, you will need to create a VEML7700 object such as:
 
-VEML7700 myVEML
+VEML7700 myVEML(0x10)
 
-All functions will be called as a method of this object.
-### Easy functions
+0x10 being the default I2C address of the VEML7700 (it's the address of the one in front of me anyway). All functions will be called as a method of this object.
+### Easy Functions
 The only two functions you should need for simple use cases are:
 - double getAmbient()
     - This function adjusts the gain and integration time in the sensor's configuration register according to values read from the ALS register, reads the value stored in the ALS register once the sensor is adjusted, calculates the approximate lux value and then applies the non-linear correction formula if necessary.
@@ -13,7 +24,7 @@ The only two functions you should need for simple use cases are:
     - This function adjusts the gain and integration time in the sensor's configuration register according to the values read from the WHITE register, reads the value stored in the WHITE register once the sensor is adjusted, calculates the approximate lux value and then applies the non-linear correction formula if necessary
     - Returns the calculated lux value based on the WHITE register
 
-### Other public functions
+### Other Public Functions
 - void initialise()
     - Sets the config register to an initial state of 0x1000
     - SD=0, ALS_INT_EN=0, ALS_PERS=0, ALS_IT=0000 (100ms), ALS_GAIN=10 = 1/8
@@ -26,7 +37,7 @@ The only two functions you should need for simple use cases are:
 - int WHITEcalibrate()
     - Behaves similarly to ALScalibrate, but uses the WHITE register of the VEML7700 as opposed to the ALS register.
 
-### Private functions
+### Private Functions
 - int ALS_ITNegativeAdjust()
     - Once the gain has been adjusted to a suitable value, this function decreases IT to the lowest suitable value
     - If the value read from the ALS is greater than 10,000, the integration time is decremented. If the integration time is minimum, then **2 is returned** to indicate that the non-linear correction formula should be applied to the read value of the ALS
