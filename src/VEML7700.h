@@ -4,7 +4,7 @@
 #include <Wire.h>
 
 //Define important VEML7700 registers and addresses
-#define VEML7700_ADDRESS 0x10
+//#define VEML7700_ADDRESS 0x10
 
 //Define initial configuration
 #define VEML7700_INIT_CONFIG_CMD  0x1000
@@ -28,6 +28,7 @@ class VEML7700{
 	uint8_t ALS_GAIN, ALS_IT, ALS_PERS, ALS_INT_EN, ALS_SD;
 	int VEML7700_gain;
 	int VEML7700_IT;
+	VEML7700(uint8_t address);
 	void initialise();
 	int ALScalibrate();
 	int WHITEcalibrate();

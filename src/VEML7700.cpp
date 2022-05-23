@@ -1,6 +1,9 @@
 #include "VEML7700.h"
 #include <Wire.h>
-
+uint8_t VEML7700_ADDRESS;
+VEML7700::VEML7700(uint8_t address){
+	VEML7700_ADDRESS = address;
+}
 //Initialise config register for a reading
 void VEML7700::initialise(){
 	//Send initial command to config register
