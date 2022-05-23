@@ -8,6 +8,7 @@ I have no affiliation with Vishay or the VEML7700 Ambient Light Sensor.
 
 ## Adding the Library to Your Sketch
 In the Arduino editor, simply select "Sketch" -> "Include Library" -> "Add .ZIP Library" and select the .zip file included with this repo to allow Arduino to access the library.
+Be sure to include `#include<VEML7700.h>` at the top of your program!
 
 ## Using the Library
 Before using any of the functions included with this library, you will need to create a VEML7700 object such as:
