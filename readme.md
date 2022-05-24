@@ -4,7 +4,7 @@ If you are able to, I would appreciate if you could compare the lux value output
 
 ## Important
 This library has not been heavily tested! As such, it **may return inaccurate values, may contain bugs such as infinite loops and may have incorrect logic**.
-I have no affiliation with Vishay or the VEML7700 Ambient Light Sensor.
+I have no affiliation with Vishay or the VEML7700 Ambient Light Sensor, and take **no responsibility** for damage caused by use of this code.
 
 ## Adding the Library to Your Sketch
 In the Arduino editor, simply select "Sketch" -> "Include Library" -> "Add .ZIP Library" and select the .zip file included with this repo to allow Arduino to access the library.
