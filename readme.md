@@ -3,7 +3,7 @@ This is a simple Arduino library written to allow Lux values to be read from the
 If you are able to, I would appreciate if you could compare the lux value output by this library with the lux value output by a lux meter.
 
 ## Important
-This library has not been heavily tested! As such, it may return inaccurate values, may contain bugs such as infinite loops.
+This library has not been heavily tested! As such, it **may return inaccurate values, may contain bugs such as infinite loops and may have incorrect logic**.
 I have no affiliation with Vishay or the VEML7700 Ambient Light Sensor.
 
 ## Adding the Library to Your Sketch
