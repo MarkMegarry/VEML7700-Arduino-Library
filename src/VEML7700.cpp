@@ -30,7 +30,14 @@ int VEML7700::ALScalibrate(){
 	//Var to be returned
   int outcome = -1;
   uint16_t ALS;
-  while(1){    
+	//Set timeout period of 10s for infinite loop in case of bug
+	unsigned long timeoutPeriod = 10000;
+	unsigned long startTime = millis();
+  while(1){
+		//Check for timeout, return -1 if timeout triggered
+		if(millis() - startTime >= timeoutPeriod){
+			return -1;
+		}
     //Read from the als register
     readData(0x04, ALS);
     
@@ -85,7 +92,15 @@ int VEML7700::WHITEcalibrate(){
 	//Var to be returned
   int outcome = -1;
   uint16_t WHITE;
+	//Set timeout period of 10s for infinite loop in case of bug
+	unsigned long timeoutPeriod = 10000;
+	unsigned long startTime = millis();
   while(1){    
+		//Check for timeout, return -1 if timeout triggered
+		if(millis() - startTime >= timeoutPeriod){
+			return -1;
+		}
+		
     //Read from the als register
     readData(0x05, WHITE);
     
@@ -140,7 +155,14 @@ int VEML7700::WHITEcalibrate(){
 //decrease IT to a suitable value
 //TODO: Add timeout to infinite loop
 int VEML7700::ALS_ITNegativeAdjust(){
+		//Set timeout period of 10s for infinite loop in case of bug
+		unsigned long timeoutPeriod = 10000;
+		unsigned long startTime = millis();
 	  while(1){
+			//Check for timeout, return -1 if timeout triggered
+			if(millis() - startTime >= timeoutPeriod){
+			return -1;
+		}
     //Turn on ALS
     ALS_SD = 0b0;
     updateConfigRegister();
@@ -173,7 +195,14 @@ int VEML7700::ALS_ITNegativeAdjust(){
 } //END OF FUNCTION
 
 int VEML7700::WHITE_ITNegativeAdjust(){
+		//Set timeout period of 10s for infinite loop in case of bug
+		unsigned long timeoutPeriod = 10000;
+		unsigned long startTime = millis();
 	  while(1){
+			//Check for timeout, return -1 if timeout triggered
+			if(millis() - startTime >= timeoutPeriod){
+			return -1;
+		}
     //Turn on ALS
     ALS_SD = 0b0;
     updateConfigRegister();
@@ -514,6 +543,9 @@ double VEML7700::getAmbient(){
   delay(3);
 
 	//Return most accurate lux value
+	if(result == -1){	//Error condition
+		return -1;
+	}
   return corrected_lux;
 }
 
