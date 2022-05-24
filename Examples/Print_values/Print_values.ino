@@ -7,8 +7,19 @@ void setup() {
 VEML7700 myVEML(0x10);
 void loop() {
   // put your main code here, to run repeatedly:
-  Serial.println("Ambient:  " + String(myVEML.getAmbient()));
-  Serial.println("White:  " + String(myVEML.getWhite()));
-  Serial.println("#######################");
-  delay(1000);
+  double ambient = myVEML.getAmbient();
+  double white = myVEML.getWhite();
+  if(ambient == -1 || white == -1){ //Error condition
+    yourErrorHandling();
+  }
+  else{
+    Serial.println("Ambient:  " + String(ambient));
+    Serial.println("White:  " + String(white));
+    Serial.println("#######################");
+    delay(1000);
+  }
+}
+
+void yourErrorHandling(){
+  //Your error handling code here
 }

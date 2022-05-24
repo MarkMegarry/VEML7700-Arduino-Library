@@ -577,5 +577,8 @@ double VEML7700::getWhite(){
   delay(3);
 
 	//Return most accurate lux value
+	if(result == -1){	//Error condition
+		return -1;
+	}
   return corrected_lux;
 }
