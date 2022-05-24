@@ -8,13 +8,10 @@ I have no affiliation with Vishay or the VEML7700 Ambient Light Sensor.
 
 ## Adding the Library to Your Sketch
 In the Arduino editor, simply select "Sketch" -> "Include Library" -> "Add .ZIP Library" and select the .zip file included with this repo to allow Arduino to access the library.
+Be sure to include `#include<VEML7700.h>` at the top of your program!
 
 ## Using the Library
-Before using any of the functions included with this library, you will need to create a VEML7700 object such as:
-
-VEML7700 myVEML(0x10)
-
-0x10 being the default I2C address of the VEML7700 (it's the address of the one in front of me anyway). All functions will be called as a method of this object.
+Before using any of the functions included with this library, you will need to create a VEML7700 object such as `VEML7700 myVEML(0x10)`, 0x10 being the default I2C address of the VEML7700 (it's the address of the one in front of me anyway). All functions will be called as a method of this object.
 ### Easy Functions
 The only two functions you should need for simple use cases are:
 - double getAmbient()
